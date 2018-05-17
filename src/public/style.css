@@ -1,3 +1,31 @@
 .error-panel {
 
 }
+
+.left, .right, .container, .sub-container{
+    display:flex;
+}
+.container {
+    width:1000px;
+    height:500px;
+    background-color:gray;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+.sub-container {
+    width:60%;
+    height:500px;
+    background-color:black;
+}
+.left, .right{
+    width:50%;
+}
+
+.right{
+    height:500px;
+    background-color:light-gray;
+}
+.left p {
+    color:white;
+}

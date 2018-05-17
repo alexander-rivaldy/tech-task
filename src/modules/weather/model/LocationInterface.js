@@ -1,6 +1,7 @@
 // @flow
 export interface LocationInterface {
-    getLongitude(): string;
+    
+    getLongitude(): ?string;
 
-    getLatitude(): string;
+    getLatitude(): ?string;
 }

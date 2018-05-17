@@ -2,3 +2,4 @@
 export interface FactoryInterface {
     createInstance(): any;
 }
+

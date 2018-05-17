@@ -1,7 +1,7 @@
 export default {
     server: {
-        protocol: 'http',
-        port: 4000,
+        protocol: 'https',
+        port: 8080,
         domain: 'localhost',
     },
     logger: {
