@@ -20,18 +20,20 @@ export default class WeatherController {
             const Location = require('../model/Location');
             
             // this._locationFactory = Object.create(FactoryInterface);
+            
+            //create Location object
+            // I wasn't able to create the object using Factory, therefore
+            // I created the object using it's own constructor
              const location = new Location();
             // const location: Location = 
             //     this._locationFactory.createInstance();
             
-            // const location: FactoryInterface = new Location()
-            console.log(location);
+            let lonValue = "";
             
-            const lonValue = location.getLongitude()
+            //grab longitude of current location
+            location.getLongitude()
                 .then(function(response){
-                    console.log("inside then");
-                    console.log(response);
-                    console.log(lonValue);
+                    lonValue = response;
                 })
                 .catch(function(err){
                     console.log("catch error");
@@ -42,15 +44,13 @@ export default class WeatherController {
             // const location = Location.createInstance;
             
             // const location = new Location();
-            
-            // please finish of the implementation by using the weatherRepository to get the current temperature
-            // for your location
-            
+        
             // const weather = 
             //         _weatherRepository.getWeatherByGeolocation(location);
             
-            console.log("SUCCESS");
-            console.log(lonValue);
+            //pass back the value to view layout
+            // WeatherRepository function not yet called due to difficulty in
+            // getLongitude and getLatitude (async, await, Promise problem)
             res.render('weather/views/index.hbs', {
                 viewModel: {
                     variable1: lonValue,
@@ -63,6 +63,8 @@ export default class WeatherController {
         }
     }
 }
+
+//function to get current time
 function getTime():String{
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const d = new Date();

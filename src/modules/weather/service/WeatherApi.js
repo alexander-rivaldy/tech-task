@@ -13,10 +13,8 @@ export default class WeatherApi {
          * please implement the proxy to darknet using the API key
          *
          */
-        //  $.getJSON('https://api.darksky.net/forecast/' + _secretKey + '/' +
-        //             lat + ',' + long, function(forecast) {
-        //                 console.log(forecast);
-        //             });
+         
+         //DarkSky API call to get all weather data
         const weather = 
             axios.get('https://api.darksky.net/forecast/' + _secretKey + 
             '/' + lat + ',' + lon)
@@ -32,6 +30,9 @@ export default class WeatherApi {
             .catch(function (error) {
               console.log("ERROR");
             });   
+            
+            //data not arranged into a Promise yet due to difficulty 
+            //understanding how Promises work
         return axios.get('');
     }
 }
