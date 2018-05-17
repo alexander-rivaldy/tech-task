@@ -15,53 +15,45 @@ export default class WeatherController {
         this._locationFactory = locationFactory;
     }
     
-    async index(req: any, res: any): Promise<void> {
+    index(req: any, res: any): Promise<void> {
         try {
             const Location = require('../model/Location');
+            // const WeatherRepository = require('../repository/WeatherRepository');
+            // const WeatherApi = require('../service/WeatherApi');
             
-            // this._locationFactory = Object.create(FactoryInterface);
+            //create object
+            const location = new Location();
+            // const weatherApi = new WeatherApi();
+            // const weatherRepository = new WeatherRepository(weatherApi,null);
             
-            //create Location object
-            // I wasn't able to create the object using Factory, therefore
-            // I created the object using it's own constructor
-             const location = new Location();
-            // const location: Location = 
-            //     this._locationFactory.createInstance();
-            
-            let lonValue = "";
-            
-            //grab longitude of current location
+            //grab longitude and latitude of current location
             location.getLongitude()
-                .then(function(response){
-                    lonValue = response;
+                .then(function(lon){
+                    location.getLatitude()
+                        .then(function(lat){
+                            
+                            
+                            
+                            res.render('weather/views/index.hbs', {
+                                viewModel: {
+                                    latitude: lat,
+                                    longitude: lon,
+                                  variable2: 'variable2',
+                                  time: getTime(),
+                                }
+                             });
+                        });
                 })
                 .catch(function(err){
-                    console.log("catch error");
+                  console.log("error from getLongitude");
+                  console.log(err);
                 });
-            
-            
-            // console.log("Longitude: " + lonValue);
-            // const location = Location.createInstance;
-            
-            // const location = new Location();
-        
-            // const weather = 
-            //         _weatherRepository.getWeatherByGeolocation(location);
-            
-            //pass back the value to view layout
-            // WeatherRepository function not yet called due to difficulty in
-            // getLongitude and getLatitude (async, await, Promise problem)
-            res.render('weather/views/index.hbs', {
-                viewModel: {
-                    variable1: lonValue,
-                    variable2: 'variable2',
-                    time: getTime(),
-                }
-            });
+
         } catch (error) {
             res.json({ error });
         }
     }
+    
 }
 
 //function to get current time
