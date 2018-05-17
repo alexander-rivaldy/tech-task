@@ -1,3 +1,11 @@
+## Comments
+I met some difficulties that I wasn't able to solve due to limited time.
+The main difficulty I encountered is revolved around async, await and Promise.
+This is because I am quite new with Node JS, therefore I am still trying to learn it.
+I will keep looking into this project and hopefully will be able to show you my progress after putting more time into it.
+
+
+
 # Technical task for new applicants
 
 ## Coding Task Guidelines
