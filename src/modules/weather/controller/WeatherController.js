@@ -27,18 +27,14 @@ export default class WeatherController {
             // const location: FactoryInterface = new Location()
             console.log(location);
             
-            // const lonValue = location.getLongitude();
-            
-            const lonValue = "";
-            
-            
-            location.getLongitude()
+            const lonValue = location.getLongitude()
                 .then(function(response){
                     console.log("inside then");
                     console.log(response);
+                    console.log(lonValue);
                 })
                 .catch(function(err){
-                    
+                    console.log("catch error");
                 });
             
             
@@ -54,6 +50,7 @@ export default class WeatherController {
             //         _weatherRepository.getWeatherByGeolocation(location);
             
             console.log("SUCCESS");
+            console.log(lonValue);
             res.render('weather/views/index.hbs', {
                 viewModel: {
                     variable1: lonValue,

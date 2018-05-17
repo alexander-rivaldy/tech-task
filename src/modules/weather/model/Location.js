@@ -8,34 +8,34 @@ export default class Location implements LocationInterface {
         
     }
 
-    async getLongitude(): ?string {
+    async getLongitude(): Promise {
         
         //geoip is a module to get latitude longitude based on IP
         //external is a module to retrieve public ip address used
         const geoip = require('geoip-lite');
-        const externalip = require('externalip');
-        let ipAddress = "";
+        // const externalip = require('externalip');
         
-        await externalip(function(err,ip){
-            console.log("externalip");
-            ipAddress = ip;
+        const publicIp = require('public-ip');
+        
+        await publicIp.v4().then(ip => {
+        	let ipAddress = ip;
+        	console.log(ipAddress);
+        	const promise = new Promise((resolve, reject) => {  
+              if (typeof ipAddress === "")  {
+                  console.log("promise error");
+                  throw new Error("rejected!"); // same as rejection
+              }
+              else{
+                    console.log("inside if promise");
+                    console.log(ipAddress);
+                    const geo = geoip.lookup(ipAddress);
+                    console.log(geo);
+                    resolve(geo.ll[1]);
+              }
+            });
+            console.log(promise);
+            return promise;
         });
-    
-        
-        let promise = await new Promise((resolve, reject) => {  
-          if (ipAddress === "")  {
-              console.log("promise error");
-              throw new Error("rejected!"); // same as rejection
-          }
-          else{
-                console.log("inside if promise");
-                const geo = geoip.lookup(ip);
-                resolve(geo.ll[1]);
-          }
-        });
-        
-        return promise;
-            
             
     }
     
